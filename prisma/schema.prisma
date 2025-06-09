@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+model User {
+  id            String   @id @default(cuid())
+  name          String?
+  email         String   @unique
+  password      String
+  workInterval  Int?     @default(25) @map("work_interval")
+  breakInterval Int?     @default(5) @map("break_interval")
+  intervalCount Int?     @default(7) @map("interval_count")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @default(now()) @updatedAt @map("updated_at")
+
+  tasks            Task[]
+  timeBlocks       TimeBlock[]
+  PomodoroSessions PomodoroSession[]
+
+  @@map("users")
+}
+
+model Task {
+  id          String    @id @default(cuid())
+  name        String
+  priority    Priority?
+  isCompleted Boolean?  @default(false) @map("is_completed")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+
+  @@map("tasks")
+}
+
+model TimeBlock {
+  id        String   @id @default(cuid())
+  name      String
+  color     String?
+  duration  Int
+  order     Int      @default(1)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+
+  @@map("time_blocks")
+}
+
+model PomodoroSession {
+  id          String   @id @default(cuid())
+  isCompleted Boolean? @default(false) @map("is_completed")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at")
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+
+  pomodoroRounds PomodoroRound[]
+
+  @@map("pomodoro_sessions")
+}
+
+model PomodoroRound {
+  id           String   @id @default(cuid())
+  totalSeconds Int      @map("total_seconds")
+  isCompleted  Boolean? @map("is_completed")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @default(now()) @updatedAt @map("updated_at")
+
+  pomodoroSession   PomodoroSession @relation(fields: [pomodoroSessionId], references: [id], onDelete: Cascade)
+  pomodoroSessionId String          @map("pomodoro_session_id")
+
+  @@map("pomodoro_rounds")
+}
