@@ -1,3 +1,4 @@
+import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import * as cookieParser from 'cookie-parser';
@@ -16,6 +17,12 @@ async function bootstrap() {
     credentials: true,
     exposedHeaders: ['Set-Cookie'],
   });
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+    }),
+  );
 
   await app.listen(config.getOrThrow<number>('APPLICATION_PORT'));
 }

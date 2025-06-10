@@ -1,0 +1,1 @@
+export const EXPIRES_DAY_REFRESH_TOKEN = 1;
