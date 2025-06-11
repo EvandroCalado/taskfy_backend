@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { jwtConfig } from './auth/config/jwt.config';
 import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './user/user.module';
+import { TasksModule } from './tasks/tasks.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { UserModule } from './user/user.module';
     AuthModule,
     UserModule,
     PrismaModule,
+    TasksModule,
   ],
 })
 export class AppModule {}
