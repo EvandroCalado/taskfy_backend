@@ -1,6 +1,8 @@
 import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
 
-export class CreateUserDto {
+import { PomodoroSettingsDto } from './pomodoro-settings.dto';
+
+export class CreateUserDto extends PomodoroSettingsDto {
   @IsString()
   @IsNotEmpty()
   name: string;
