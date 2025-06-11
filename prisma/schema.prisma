@@ -15,7 +15,7 @@ enum Priority {
 }
 
 model User {
-  id            String   @id @default(cuid())
+  id            String   @id @default(uuid())
   name          String?
   email         String   @unique
   password      String
@@ -33,7 +33,7 @@ model User {
 }
 
 model Task {
-  id          String    @id @default(cuid())
+  id          String    @id @default(uuid())
   name        String
   priority    Priority?
   isCompleted Boolean?  @default(false) @map("is_completed")
@@ -47,7 +47,7 @@ model Task {
 }
 
 model TimeBlock {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid())
   name      String
   color     String?
   duration  Int
@@ -62,7 +62,7 @@ model TimeBlock {
 }
 
 model PomodoroSession {
-  id          String   @id @default(cuid())
+  id          String   @id @default(uuid())
   isCompleted Boolean? @default(false) @map("is_completed")
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @default(now()) @updatedAt @map("updated_at")
@@ -76,7 +76,7 @@ model PomodoroSession {
 }
 
 model PomodoroRound {
-  id           String   @id @default(cuid())
+  id           String   @id @default(uuid())
   totalSeconds Int      @map("total_seconds")
   isCompleted  Boolean? @map("is_completed")
   createdAt    DateTime @default(now()) @map("created_at")
