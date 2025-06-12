@@ -7,6 +7,7 @@ import { jwtConfig } from './auth/config/jwt.config';
 import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './user/user.module';
 import { TasksModule } from './tasks/tasks.module';
+import { TimeBlocksModule } from './time-blocks/time-blocks.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { TasksModule } from './tasks/tasks.module';
     UserModule,
     PrismaModule,
     TasksModule,
+    TimeBlocksModule,
   ],
 })
 export class AppModule {}
