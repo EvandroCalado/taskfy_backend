@@ -15,12 +15,12 @@ import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { CreateTimeBlockDto } from './dto/create-time-block.dto';
 import { UpdateTimeBlockDto } from './dto/update-time-block.dto';
-import { TimeBlocksService } from './time-blocks.service';
+import { TimeBlockService } from './time-block.service';
 
 @Auth()
 @Controller('time-blocks')
-export class TimeBlocksController {
-  constructor(private readonly timeBlocksService: TimeBlocksService) {}
+export class TimeBlockController {
+  constructor(private readonly timeBlocksService: TimeBlockService) {}
 
   @Post()
   create(

@@ -5,7 +5,7 @@ import { CreateTimeBlockDto } from './dto/create-time-block.dto';
 import { UpdateTimeBlockDto } from './dto/update-time-block.dto';
 
 @Injectable()
-export class TimeBlocksService {
+export class TimeBlockService {
   constructor(private readonly prismaService: PrismaService) {}
 
   create(createTimeBlockDto: CreateTimeBlockDto, userId: string) {
