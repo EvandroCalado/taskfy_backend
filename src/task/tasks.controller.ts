@@ -16,7 +16,7 @@ import { UpdateTaskDto } from './dto/update-task.dto';
 import { TaskService } from './tasks.service';
 
 @Auth()
-@Controller('tasks')
+@Controller('task')
 export class TaskController {
   constructor(private readonly tasksService: TaskService) {}
 
