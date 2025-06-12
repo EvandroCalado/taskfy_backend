@@ -13,12 +13,12 @@ import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
-import { TasksService } from './tasks.service';
+import { TaskService } from './tasks.service';
 
 @Auth()
 @Controller('tasks')
-export class TasksController {
-  constructor(private readonly tasksService: TasksService) {}
+export class TaskController {
+  constructor(private readonly tasksService: TaskService) {}
 
   @Post()
   create(@Body() createTaskDto: CreateTaskDto, @CurrentUser('id') id: string) {
