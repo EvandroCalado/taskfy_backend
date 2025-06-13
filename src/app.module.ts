@@ -4,6 +4,7 @@ import { JwtModule } from '@nestjs/jwt';
 
 import { AuthModule } from './auth/auth.module';
 import { jwtConfig } from './auth/config/jwt.config';
+import { PomodoroModule } from './pomodoro/pomodoro.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { TaskModule } from './task/tasks.module';
 import { TimeBlockModule } from './time-block/time-block.module';
@@ -24,6 +25,7 @@ import { UserModule } from './user/user.module';
     PrismaModule,
     TaskModule,
     TimeBlockModule,
+    PomodoroModule,
   ],
 })
 export class AppModule {}
